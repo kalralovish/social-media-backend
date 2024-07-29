@@ -1,0 +1,380 @@
+{
+  "info": {
+    "name": "Social Media Backend API",
+    "_postman_id": "unique-id-here",
+    "description": "Collection for testing the Social Media Backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "url": "{{base_url}}/token",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {"key": "username", "value": "user@example.com"},
+                {"key": "password", "value": "password123"}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "url": "{{base_url}}/users/",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"mobile_no\": \"1234567890\",\n    \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Users",
+          "request": {
+            "url": "{{base_url}}/users/",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "url": "{{base_url}}/users/1",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Search Users",
+          "request": {
+            "url": "{{base_url}}/users/search/?name=John",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Follow User",
+          "request": {
+            "url": "{{base_url}}/users/1/follow/2",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Unfollow User",
+          "request": {
+            "url": "{{base_url}}/users/1/unfollow/2",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Discussions",
+      "item": [
+        {
+          "name": "Create Discussion",
+          "request": {
+            "url": "{{base_url}}/discussions/",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"text\": \"This is a new discussion\",\n    \"image\": \"http://example.com/image.jpg\",\n    \"hashtags\": [\"test\", \"new\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Discussions",
+          "request": {
+            "url": "{{base_url}}/discussions/",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Get Discussion by ID",
+          "request": {
+            "url": "{{base_url}}/discussions/1",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update Discussion",
+          "request": {
+            "url": "{{base_url}}/discussions/1",
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"text\": \"Updated discussion text\",\n    \"image\": \"http://example.com/new-image.jpg\",\n    \"hashtags\": [\"updated\", \"test\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Discussion",
+          "request": {
+            "url": "{{base_url}}/discussions/1",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Get Discussions by Hashtag",
+          "request": {
+            "url": "{{base_url}}/discussions/hashtag/test",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Like Discussion",
+          "request": {
+            "url": "{{base_url}}/discussions/1/like",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Unlike Discussion",
+          "request": {
+            "url": "{{base_url}}/discussions/1/like",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "View Discussion",
+          "request": {
+            "url": "{{base_url}}/discussions/1/view",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "Create Comment",
+          "request": {
+            "url": "{{base_url}}/discussions/1/comments/",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"text\": \"This is a new comment\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Comments",
+          "request": {
+            "url": "{{base_url}}/discussions/1/comments/",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Reply to Comment",
+          "request": {
+            "url": "{{base_url}}/comments/1/reply",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"text\": \"This is a reply to the comment\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Like Comment",
+          "request": {
+            "url": "{{base_url}}/comments/1/like",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Unlike Comment",
+          "request": {
+            "url": "{{base_url}}/comments/1/like",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update Comment",
+          "request": {
+            "url": "{{base_url}}/comments/1",
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"text\": \"Updated comment text\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Comment",
+          "request": {
+            "url": "{{base_url}}/comments/1",
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
